@@ -4,7 +4,7 @@ Loop, 34
     Send, f
     Sleep, 2000
     MouseClick, left,  1725,  1009
-    Sleep, 5500
+    Sleep, 4000
     MouseClick, left,  756,  997
     Sleep, 1500
     MouseClick, left,  985,  994
