@@ -1,0 +1,6 @@
+# Compiled AutoHotkey output (distributed via GitHub Releases)
+*.exe
+
+# Editor / agent local state
+.claude/
+.vscode/

@@ -1,56 +1,59 @@
 # NTE Auto Owner's Selection
 
-用于自动刷《异环》店长特供 `1-1` 关卡的 AutoHotkey 脚本。
+An AutoHotkey script that auto-farms the *Owner's Selection* `1-1` stage in **Neverness To Everness (NTE / 异环)**.
 
-当前脚本行为很简单：
+What the script does:
 
-- 以热键 `P` 启动
-- 自动执行店长特供 `1-1` 共 `34` 次
-- 依赖固定鼠标坐标点击，因此需要保持分辨率、界面缩放和站位一致
+- On launch, shows a resolution picker supporting `1080p (1920x1080)`, `2K (2560x1440)`, and `4K (3840x2160)`. Default is `4K`.
+- Press the `P` hotkey to start the automation.
+- Runs *Owner's Selection* `1-1` for `34` iterations.
+- Drives the UI by clicking fixed coordinates (calibrated against `1920x1080` and auto-scaled to the selected resolution), so the in-game UI scale and character position must stay consistent.
 
-## 文件
+## Files
 
-- `自动店长特供1-1.ahk`：脚本本体
-- `启动位置.png`：按下 `P` 前的角色站位参考图
-- `辅助雇员.png`：辅助雇员选择参考图
-- `海月等级.png`：海月都市特技等级参考图
+- `auto-owners-selection-1-1.ahk` — the script itself
+- `starting-position.png` — reference image for the character's position before pressing `P`
+- `support-employee.png` — reference for the required support employee selection
+- `haiyue-skill-level.png` — reference for Haiyue's Urban Skill level
 
-## 使用前准备
+## Prerequisites
 
-1. 先手动完整打通一次店长特供 `1-1`，让游戏中的默认关卡固定为 `1-1`。
-2. 辅助雇员必须选择 `海月`，与下图保持一致。
-3. 海月的都市特技等级必须达到 `3` 级，与下图保持一致。
-4. 将游戏窗口与分辨率调整为 `1920×1080 全萤幕`，角色站位调整到与 [启动位置.png](./启动位置.png) 一致，焦点选择 `店长特供`。
-5. 使用管理员权限运行 `自动店长特供1-1.ahk`，或运行编译后的 `exe`，使用脚本时务必使用英文输入法！。
+1. Manually clear *Owner's Selection* `1-1` once so that the game's default selected stage is fixed to `1-1`.
+2. Set your support employee to **Haiyue** (海月), matching the image below.
+3. Haiyue's Urban Skill must be at **level 3**, matching the image below.
+4. Run the game in **fullscreen** at one of the supported resolutions (`1920x1080`, `2560x1440`, or `3840x2160`). Place your character to match [starting-position.png](./starting-position.png), and make sure *Owner's Selection* is the focused option.
+5. Run `auto-owners-selection-1-1.ahk` as **Administrator** (or run the compiled `.exe` as Administrator). Make sure your IME is set to **English** while the script is running.
+6. When the script starts, a **resolution picker** appears — click the button that matches your in-game resolution (defaults to `4K`).
 
-![辅助雇员](./辅助雇员.png)
+![Support employee](./support-employee.png)
 
-![海月等级](./海月等级.png)
+![Haiyue skill level](./haiyue-skill-level.png)
 
-## 使用方法
+## How to use
 
-1. 进入店长特供界面，并把角色移动到下图位置。
-2. 在该位置面向柜台，确保交互项已经出现。
-3. 按下键盘 `P` 开始自动执行。
-4. 脚本会自动刷 `34` 次，期间不要移动鼠标或切换窗口。
+1. Enter the *Owner's Selection* screen and move your character to the position shown below.
+2. Face the counter and confirm the interaction prompt has appeared.
+3. Press `P` to start the automation.
+4. The script will run `34` iterations. Do not move the mouse or switch windows during this time.
 
-![启动位置](./启动位置.png)
+![Starting position](./starting-position.png)
 
-## 编译环境
+## Build environment
 
-本脚本使用 AutoHotkey v1 语法。
+The script is written in **AutoHotkey v1** syntax.
 
-- 源码仓库：<https://github.com/AutoHotkey/AutoHotkey-v1.0>
-- 如需自行编译，可使用该仓库对应的 AutoHotkey v1.0 环境 / 工具链进行处理
+- Source repo: <https://github.com/AutoHotkey/AutoHotkey-v1.0>
+- To compile your own `.exe`, use the AutoHotkey v1.0 toolchain from that repo.
 
-## 注意事项
+## Notes
 
-- 脚本使用固定坐标点击，默认只适合同一套分辨率与窗口布局。
-- 使用脚本时必须使用 `海月` 作为辅助雇员，且海月都市特技等级必须为 `3` 级。
-- 如果你没有先手动打一遍 `1-1`，默认关卡可能不是 `1-1`，脚本会点错流程。
-- 管理员权限运行是为了避免脚本输入和点击被系统权限拦截。
-- 自动化脚本可能违反游戏规则，封禁或其他后果请自行承担。
+- Coordinates are based on `1920x1080` and scaled to the selected resolution. Only `1080p / 2K / 4K` are supported; other resolutions or non-integer UI scaling may cause misclicks.
+- Always pick the resolution that matches the game — the wrong selection will cause the script to click in the wrong places.
+- You must use **Haiyue** as your support employee, with her Urban Skill at level 3.
+- If you have not manually cleared `1-1` first, the default stage may not be `1-1` and the script will follow the wrong flow.
+- Administrator privileges are required so the script's inputs and clicks are not blocked by Windows.
+- Automation scripts may violate the game's terms of service. Any bans or other consequences are your responsibility.
 
-## 许可证
+## License
 
-本仓库使用 [MIT License](./LICENSE)。
+This repository is released under the [MIT License](./LICENSE).
