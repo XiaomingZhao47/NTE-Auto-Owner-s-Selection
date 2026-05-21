@@ -7,47 +7,62 @@ CoordMode, Mouse, Screen
 global scaleX := 2.0
 global scaleY := 2.0
 global resLabel := "4K (3840x2160)"
+global iterations := 59
 
-ShowResolutionMenu()
+ShowSetupMenu()
 return
 
-ShowResolutionMenu() {
-    Gui, ResSel:New, +AlwaysOnTop +OwnDialogs, NTE Auto Owner's Selection - Resolution
-    Gui, ResSel:Font, s10, Segoe UI
-    Gui, ResSel:Add, Text, x20 y15 w320, Select your in-game resolution (fullscreen):
-    Gui, ResSel:Add, Button, x20 y45 w320 h36 gSet1080p, 1080p  (1920 x 1080)
-    Gui, ResSel:Add, Button, x20 y90 w320 h36 gSet2K,    2K  (2560 x 1440)
-    Gui, ResSel:Add, Button, x20 y135 w320 h36 Default gSet4K, 4K  (3840 x 2160)
-    Gui, ResSel:Add, Text, x20 y180 w320, After selecting, press P to run 34 iterations.
-    Gui, ResSel:Show, w360 h210
+ShowSetupMenu() {
+    Gui, Setup:New, +AlwaysOnTop +OwnDialogs, NTE Auto Owner's Selection - Setup
+    Gui, Setup:Font, s10, Segoe UI
+    Gui, Setup:Add, Text, x20 y15 w320, Select your in-game resolution (fullscreen):
+    Gui, Setup:Add, Button, x20 y45 w320 h32 gSet1080p, 1080p  (1920 x 1080)
+    Gui, Setup:Add, Button, x20 y82 w320 h32 gSet2K,    2K  (2560 x 1440)
+    Gui, Setup:Add, Button, x20 y119 w320 h32 Default gSet4K, 4K  (3840 x 2160)
+    Gui, Setup:Add, Text, x20 y165 w200 h22, Number of iterations (1-999):
+    Gui, Setup:Add, Edit, x220 y162 w120 h24 Number Limit3 vIterEdit, 59
+    Gui, Setup:Add, Text, x20 y200 w320, Edit the count above, then click the resolution that matches your game. Press P afterward to start.
+    Gui, Setup:Show, w360 h250
+}
+
+ReadIterations() {
+    global iterations
+    GuiControlGet, val,, IterEdit
+    val += 0
+    if (val < 1)
+        val := 1
+    iterations := val
 }
 
 Set1080p:
+    ReadIterations()
     scaleX := 1.0
     scaleY := 1.0
     resLabel := "1080p (1920x1080)"
-    Gui, ResSel:Destroy
-    TrayTip, NTE Auto Owner's Selection, Selected %resLabel%`nPress P to start, 3
+    Gui, Setup:Destroy
+    TrayTip, NTE Auto Owner's Selection, % "Selected " . resLabel . ", " . iterations . " iterations`nPress P to start", 3
     return
 
 Set2K:
+    ReadIterations()
     scaleX := 2560 / 1920
     scaleY := 1440 / 1080
     resLabel := "2K (2560x1440)"
-    Gui, ResSel:Destroy
-    TrayTip, NTE Auto Owner's Selection, Selected %resLabel%`nPress P to start, 3
+    Gui, Setup:Destroy
+    TrayTip, NTE Auto Owner's Selection, % "Selected " . resLabel . ", " . iterations . " iterations`nPress P to start", 3
     return
 
 Set4K:
+    ReadIterations()
     scaleX := 3840 / 1920
     scaleY := 2160 / 1080
     resLabel := "4K (3840x2160)"
-    Gui, ResSel:Destroy
-    TrayTip, NTE Auto Owner's Selection, Selected %resLabel%`nPress P to start, 3
+    Gui, Setup:Destroy
+    TrayTip, NTE Auto Owner's Selection, % "Selected " . resLabel . ", " . iterations . " iterations`nPress P to start", 3
     return
 
-ResSelGuiClose:
-ResSelGuiEscape:
+SetupGuiClose:
+SetupGuiEscape:
     ExitApp
 
 Click(x, y) {
@@ -56,7 +71,7 @@ Click(x, y) {
 }
 
 p::
-Loop, 34
+Loop, % iterations
 {
     Send, f
     Sleep, 1500

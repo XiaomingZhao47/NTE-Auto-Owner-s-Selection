@@ -4,9 +4,10 @@ An AutoHotkey script that auto-farms the *Owner's Selection* `1-1` stage in **Ne
 
 What the script does:
 
-- On launch, shows a resolution picker supporting `1080p (1920x1080)`, `2K (2560x1440)`, and `4K (3840x2160)`. Default is `4K`.
+- On launch, shows a setup popup with:
+  - **Resolution picker** — `1080p (1920x1080)`, `2K (2560x1440)`, or `4K (3840x2160)`. Default is `4K`.
+  - **Iteration count** — editable number field (default `59`, range `1`–`999`) for how many times to run the loop.
 - Press the `P` hotkey to start the automation.
-- Runs *Owner's Selection* `1-1` for `34` iterations.
 - Drives the UI by clicking fixed coordinates (calibrated against `1920x1080` and auto-scaled to the selected resolution), so the in-game UI scale and character position must stay consistent.
 
 ## Files
@@ -23,7 +24,7 @@ What the script does:
 3. Haiyue's Urban Skill must be at **level 3**, matching the image below.
 4. Run the game in **fullscreen** at one of the supported resolutions (`1920x1080`, `2560x1440`, or `3840x2160`). Place your character to match [starting-position.png](./starting-position.png), and make sure *Owner's Selection* is the focused option.
 5. Run `auto-owners-selection-1-1.ahk` as **Administrator** (or run the compiled `.exe` as Administrator). Make sure your IME is set to **English** while the script is running.
-6. When the script starts, a **resolution picker** appears — click the button that matches your in-game resolution (defaults to `4K`).
+6. When the script starts, a **setup popup** appears. Adjust the **iteration count** (default `59`) if you want a different number of runs, then click the **resolution button** that matches your in-game resolution (defaults to `4K`). The popup closes once you click a resolution.
 
 ![Support employee](./support-employee.png)
 
@@ -34,7 +35,7 @@ What the script does:
 1. Enter the *Owner's Selection* screen and move your character to the position shown below.
 2. Face the counter and confirm the interaction prompt has appeared.
 3. Press `P` to start the automation.
-4. The script will run `34` iterations. Do not move the mouse or switch windows during this time.
+4. The script will run the number of iterations you set in the setup popup (default `59`). Do not move the mouse or switch windows during this time.
 
 ![Starting position](./starting-position.png)
 
