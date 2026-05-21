@@ -8,6 +8,7 @@ global scaleX := 2.0
 global scaleY := 2.0
 global resLabel := "4K (3840x2160)"
 global iterations := 59
+global IterEdit := 59
 
 ShowSetupMenu()
 return
